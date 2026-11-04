@@ -554,6 +554,8 @@ print(ter)
 
 
 
+查找很快，修改很慢
+
 ```
 ter = [10,20,30,40,50]
 print(ter[0])
@@ -562,6 +564,113 @@ print(ter[len(ter)-1]) ———————————列表最后一位
 print(ter[-1]) ———————————————————50
 print(ter[-5]) ———————————————————10
 ```
+
+
+
+**遍历列表**的三种方法
+
+```
+i = 0
+while i < len(lst):
+    print(f"{lst[i]} ",end="")
+    i += 1
+print()
+
+for i in range(len(lst)):
+    print(f"{lst[i]} ",end="")
+print()
+
+# 使用迭代(后续章节讲)方式————推荐  for 元素 in 容器:
+for item in lst:
+    print(f"{item} ",end="")
+```
+
+
+
+**列表的切片**(截取子列表)格式：[开始索引:结束索引(不包含):步长]
+
+```
+lst = [10,20,40,50,60,70,90,80]
+print(lst)
+
+sub_lst = lst[::] # 从开始到结尾全部切片
+sub_lst = lst[2::] # [2,n)，[40, 50, 60, 70, 90, 80]
+sub_lst = lst[2:4] # 索引区间为[2,4)，[40, 50]
+sub_lst = lst[2:6:2] # 索引区间为[2,6)，[40, 60]
+sub_lst = lst[4:2:-1] # [4,2)，[60,50]
+sub_lst = lst[-7,-1] # [-7,-1)，[20, 40, 50, 60, 70, 90]
+
+print(sub_lst)
+```
+
+
+
+
+
+**列表常用函数**
+
+```
+lst = [10,20,30,40,50]
+print(dir(lst)) ——————————————————查看常用函数
+————————————————————————————————————————————————————————————————————————————————————————————
+['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 
+'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+————————————————————————————————————————————————————————————————————————————————————————————
+
+lst = [10,20,30,40,50]
+
+# 在最后追加
+lst.append(100)
+lst.append(100)
+print(lst)
+
+# 将lst复制给new_lst
+new_lst = lst.copy()
+print(new_lst)
+
+# 返回列表里100的个数
+num = lst.count(100)
+print(num)
+
+# 将new_lst接在lst后面
+lst.extend(new_lst)
+print(lst)
+
+# 查找第一个50这个数据的索引值
+s = lst.index(50)
+print(s)
+# 查找50这个数据在[5,15)范围内的索引值，返回第一个出现的50的索引值
+s = lst.index(50,5,15)
+print(s)
+
+# 在查到的第一个50后面加上60
+lst.insert(lst.index(50)+1,60)
+print(lst)
+
+# 删除列表最后一个数据
+lst.pop()
+# 删除列表索引为4的数据
+lst.pop(4) 
+print(lst)
+
+# 删除第一个匹配到的20
+lst.remove(20)
+print(lst)
+
+# 反转整个列表
+lst.reverse()
+print(lst)
+
+# 对列表进行排序
+lst.sort()
+print(lst)
+```
+
+
+
+
+
+
 
 
 
