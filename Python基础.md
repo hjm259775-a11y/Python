@@ -684,7 +684,13 @@ print(lst3[1][2]) # 4
 for i in lst3: ————————————遍历
     for j in i:
         print(j)
+```
 
+
+
+**列表推导式**
+
+```
 3.列表推导式(重要)—--对列表元素操的简化写法
 引导： 问题：将lst1的所有元素全部*10？
 格式：[元素操作 for 元素 in 列表 if 筛选条件]
@@ -696,7 +702,6 @@ lst = [10,20,30,40,50] ——————————这样也可以
 for i in range(len(lst)):
     lst[i] = lst[i] * 10
 print(lst)
-
 ```
 
 
@@ -707,19 +712,195 @@ print(lst)
 
 
 
+### 元组 tuple
 
-
-### 元组
-
-
-
+和列表的区别：**元素不能发生改变**
 
 
 
+**创建空元组**
 
-### 字典
+```
+tuple1 = ()
+tuple1 = tuple()
+print(tuple1) # ()
+print(type(tuple)) # <class 'tuple'>
+```
 
 
+
+**创建有元素的元组**
+
+```
+tuple1 = (10,) ————————直接写(10)会被认为是int
+print(tuple1)
+print(type(tuple1))
+```
+
+
+
+**元组常用函数**
+
+```py
+tuple1 = (10,20,"nailong",20)
+
+# 输出nailong出现的个数
+print(tuple1.count("nailong"))
+
+# 查找第一个20的索引值
+print(tuple1.index(20))
+```
+
+
+
+
+
+### 字典 dict
+
+里面存储着一个个键值对
+
+*   3.6版本后是有序
+
+*   键不支持容器类型，但值可以为容器类型
+
+*   键唯一，值不唯一（键重复的话只取后面的）
+*   
+
+
+
+**创建空字典**
+
+```
+dict1 = {}
+dict1 = dict()
+print(dict1) # {}
+print(type(dict1)) # <class 'dict'>
+```
+
+
+
+**创建有元素的字典**
+
+```
+dict1 = {"name":"liucheng","shili":"qun"}
+print(dict1)
+```
+
+每次插入看下有没有和自己键一样的，要是有就覆盖，没有就正常插入
+
+
+
+**访问字典**
+
+```
+# 读取
+print(dict1["name"])
+print(dict1.get("name")) ——————两种查看方式都可以
+
+dict1["shili"] = "wei" ————————修改值
+print(dict1["shili"])
+```
+
+
+
+**字典常用方法函数**
+
+```python
+dict1 = {"name":"liucheng","shili":"qun"}
+
+# 返回所有的键（可以转成列表）
+print(dict1.keys()) # dict_keys(['name', 'shili'])
+
+# 获取所有的键值
+print(dict1.items()) # dict_items([('name', 'liucheng'), ('shili', 'qun')])
+
+# 增加键值对（要是已存在改键，则直接不修改）（要是值为空，就写None）
+dict1.setdefault("jineng","lueying")
+print(dict1) # {'name': 'liucheng', 'shili': 'qun', 'jineng': 'lueying'}
+
+# 增加键值对（要是已存在改建，则覆盖该键的值）
+dict1["xingbie"] = "nv"
+print(dict1) # {'name': 'liucheng', 'shili': 'qun', 'jineng': 'lueying', 'xingbie': 'nv'}
+
+# 删除xingbie这个键所对应的值，并返回字符串
+str1 = dict1.pop("xingbie")
+print(str1) # nv
+print(dict1) # {'name': 'liucheng', 'shili': 'qun', 'jineng': 'lueying'}
+
+# 删除最后一个键值对，并以元组返回
+print(dict1.popitem()) # ('jineng', 'lueying')
+```
+
+| 方法名     | 说明                                                         |
+| :--------- | :----------------------------------------------------------- |
+| clear      |                                                              |
+| copy       |                                                              |
+| get        | 和字典对象[key]类似，通过key值获取值，注意，如果没有该键，则返回none |
+| keys       | 返回所有的键                                                 |
+| values     | 返回所有的值                                                 |
+| setdefault | 设置一个默认值                                               |
+| items      | 返回键值对                                                   |
+| pop (key)  | 删除指定key的键值对，并将key对应的值返回                     |
+| popitem    | 以元组的形式返回并删除字典中的最后一对键和值                 |
+
+
+
+
+
+**字典遍历方法**
+
+```py
+# 可以看到，常规的for循环得到的是他的键
+for i in dict1:
+    print(f"key:{i},zhi:{dict1[i]}")
+    
+# 和上面的完全一样
+for key in dict1.keys():
+    print(f"key:{key},zhi:{dict1[key]}")
+   
+# 遍历键值对
+for j in dict1.items():
+    print(j)
+# ('name', 'liucheng') # 可以看到，这里输出的是小元组
+# ('shili', 'qun')
+
+# items出的元组还能用列表推导式
+for it in dict1.items():
+    print([x*2 for x in it]) # 这里明明是元组，为什么可以修改？因为只是把元组的元素拿出来进行修改，然后装到了一个新的列表里，并没有修改元组
+# ['namename', 'liuchengliucheng']
+# ['shilishili', 'qunqun']
+```
+
+
+
+**字典生成**
+
+```py
+# 1. 测试fromkeys -- 值一样的字典，推荐使用
+lst = ["语文","数学","英语"]
+res = dict.fromkeys(lst)
+print(res) # {'语文': None, '数学': None, '英语': None}
+res = dict.fromkeys(lst,100)
+print(res) # {'语文': 100, '数学': 100, '英语': 100}
+
+
+# 2. 全局函数zip()函数
+lst_x = ["语文","数学","英语"]
+lst_y = [98,65,90]
+res = zip(lst_x,lst_y)
+dict_res = {}
+for item in res:
+    dict_res[item[0]] = item[1]
+print(dict_res)
+
+# 测试长度不一时的间题 --> 按实际最短的一项匹配，超出的舍弃
+lst_x = ["语文","数学","英语","物理"]
+lst_y = [98,65,90,100,80]
+res = zip(lst_x,lst_y)
+# strict:类似于检索开关，默认为False，如果长度不一致时，则舍弃，当strict为True则报错
+# res = zip(lst_x,lst_y,strict=True)
+print(list(res)) # [('语文', 98), ('数学', 65), ('英语', 90), ('物理', 100)]
+```
 
 
 
@@ -730,8 +911,6 @@ print(lst)
 ### 集合 set
 
 基于**红黑树**（或者哈希表）实现的数据结构，核心目的都是为了**去重**和**极速查找**
-
-
 
 
 
@@ -813,16 +992,112 @@ print(set_a) # {40, 10, 50, 20, 60}
 
 
 
-
-
-
-
-
-
 ### 字符串
 
 
 
+**字符串的创建**
+
+```
+str1 = 'liucheng'
+str1 = "liucheng"
+str1 = '''liucheng'''
+
+# 直接把str里面的全部转成字符串格式
+print(str(["liucheng",21])) # ['liucheng', 21]
+print(type(str(["liucheng",21]))) # <class 'str'>
+```
+
+
+
+**字符串的调用和切片**
+
+```
+# 像列表一样调用
+
+str1 = "liucheng"
+print(str1[1]) # i
+print(str1[-1]) # g
+
+# 切片
+print(str1[0:3]) # liu
+```
+
+
+
+**字符串的遍历**
+
+```
+for i in range(len(str1)):
+    print(str1[i])
+    
+for i in str1:
+    print(i)
+```
+
+
+
+**字符串的格式化**
+
+```
+username = "zhangsan"
+password = "111"
+print(f"username:{username},password:{password}")
+print(f"username:%s,password:%s" % (username,password))
+print(f"username:",username,",password:",password)
+```
+
+
+
+
+
+**字符串常用函数**
+
+```py
+str1 = 'liucheng'
+
+# 使用自定义字符对字符串进行分割，分割出来的用列表装起来
+str1 = str1.split("c") ——————————用c进行分割
+print(f"{str1[0]} {str1[1]}") # liu heng
+
+# 使用自定义字符对字符串中的元素进行连接
+res = ".".join(str1)
+print(res) # l.i.u.c.h.e.n.g
+
+# 替换指定字符串
+str1 = "wo ai xgz"
+res = str1.replace("wo","ni")
+print(str1) # wo ai xgz
+print(res) # ni ai xgz
+
+
+
+# 创建规则，以应用为替换规则 maketrans
+str_x = "abcde"
+str_y = "12345"
+
+res = str.maketrans(str_x,str_y) ————创建规则
+print(res) # {97: 49, 98: 50, 99: 51, 100: 52, 101: 53}
+
+str3 = "wa ai abcd"
+res = str3.translate(res) —————————————————调用规则
+print(res) # w1 1i 1234
+```
+
+| 函数               | 作用                                      | 示例（假设 `s = " Hello World "`） | 结果              |
+| :----------------- | :---------------------------------------- | :--------------------------------- | :---------------- |
+| **`strip()`**      | 去除两端空格/指定字符                     | `s.strip()`                        | `"Hello World"`   |
+| **`split()`**      | 按指定字符切分为列表（默认按空格切）      | `"a,b,c".split(",")`               | `['a', 'b', 'c']` |
+| **`join()`**       | 将列表元素拼接成字符串                    | `"-".join(['a', 'b'])`             | `"a-b"`           |
+| **`replace()`**    | 替换指定的字符（返回新字符串）            | `"apple".replace("p", "b")`        | `"abble"`         |
+| **`find()`**       | 查找子串，找到返回索引，**找不到返回 -1** | `"apple".find("p")`                | `1`               |
+| **`count()`**      | 统计子串出现的次数                        | `"banana".count("a")`              | `3`               |
+| **`upper()`**      | 全部转大写                                | `"abc".upper()`                    | `"ABC"`           |
+| **`lower()`**      | 全部转小写                                | `"ABC".lower()`                    | `"abc"`           |
+| **`startswith()`** | 判断是否以某内容开头（返回布尔）          | `"abc".startswith("a")`            | `True`            |
+| **`endswith()`**   | 判断是否以某内容结尾（返回布尔）          | `"abc".endswith("c")`              | `True`            |
+| **`isdigit()`**    | 判断是否全是数字（常用于输入校验）        | `"123".isdigit()`                  | `True`            |
+| **`isalpha()`**    | 判断是否全是字母                          | `"abc".isalpha()`                  | `True`            |
 
 
 
@@ -834,8 +1109,27 @@ print(set_a) # {40, 10, 50, 20, 60}
 
 
 
+示例：输入语数外成绩，把他们分开
+
+```
+res = input("输入语数外成绩，用空格隔开：")
+res = res.split(" ") ————————————————————————————用空格隔开
+print(f"{res[0]}和{res[1]}和{res[2]}")
+
+————上下都可以
+
+a,b,c = input("输入语数外成绩，用空格隔开：").split(" ")
+print(f"{a}和{b}和{c}")
+```
 
 
+
+示例：将列表转为字符串（小巧思用的join）
+
+```
+list1 = ["l","i","u","1","2","3"] ——————————可以看到这里整形也用了""，想组成字符串列表里面就必须全是字符串
+print("".join(list1)) # liu123
+```
 
 
 
