@@ -1375,6 +1375,109 @@ print(name) # sunhanhua
 
 
 
+1，lambda表达式简写了函数的定义
+
+2，无参数时小括号必须省略
+
+3，调用时需要重新赋值引用，等价于创建了一个新函数
+
+4，作用：lambda本身作用主要为传递函数，并不是调用
+
+5，lambda表达式需要使用关键字lambda创建
+
+6，lambda表达式本质为匿名函数
+
+
+
+
+
+
+
+**格式：**
+
+```
+lambda 参数1,参数2:返回值
+```
+
+
+
+**示例：**
+
+```py
+# 无参数lambda
+test1 = lambda :"liucheng"
+print(test1())
+
+
+# 一参数lambda
+def test2(x):
+    return x
+print(test2) # <function test2 at 0x000002285E55A3E0>
+print(test2(2))
+
+# ——————————————————可以看到，上下两个地址并不相同
+
+test2 = lambda x : x
+print(test2) # <function <lambda> at 0x000002285E7A4C20>
+print(test2(2))
+
+
+# 多参数lambda
+test3 = lambda x,y,z:x+y+z
+print(test3(1,2,3))
+```
+
+
+
+**作用：**
+
+```py
+# 将函数作为参数传递
+fn = lambda : "zhangsan"
+print(fn) # 内存地址 <function fn at 0x0000019229ABE0C0>
+
+def test4(fn): # 参数为函数(内存地址)
+    return fn() # 调用函数的结果
+print(test4(fn)) # "zhangsan" ,这里把fn换成上面的lambda就有那效果了，放在这里方便理解
+# 可以看到，这里用了fn的内存地址，调用了fn本身
+
+
+# 使用lambda定义排序规则（按名字长短从大到小输出名字）
+list1 = ["liucheng","sunhanhua","caojie"]
+list1.sort(key = lambda name:-len(name)) # 使用自己定义的规则去排序，使用lambda更方便
+print(list1) # ['sunhanhua', 'liucheng', 'caojie']
+
+
+# 偏函数
+# 不允许修改原有代码的情况下对函数功能进行修改，将函数本身变化产生一个新函数
+# 新增一个功能，给y设置默认值100
+def sum(x,y):
+    return x+y;
+print(sum(100,200)) # 300
+
+import functools
+sum = functools.partial(sum,y=100) # 直接把原来的sum覆盖了，也可以起别的名字
+print(sum(100)) # 200
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
