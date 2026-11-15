@@ -1455,7 +1455,7 @@ def sum(x,y):
     return x+y;
 print(sum(100,200)) # 300
 
-import functools
+import functools # 调用这个库
 sum = functools.partial(sum,y=100) # 直接把原来的sum覆盖了，也可以起别的名字
 print(sum(100)) # 200
 ```
