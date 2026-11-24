@@ -294,6 +294,56 @@ print("程序终止")
 
 
 
+# with
+
+**简化IO的读写操作**
+
+
+
+```py
+# 读
+with open("D:\\github\\py_node\\test\\nailong.txt","r",encoding="utf-8") as file:
+    print(file.read())
+
+# 写
+with open("D:\\github\\py_node\\test\\nailong.txt","w",encoding="utf-8") as file:
+    file.write("xibababalubila")
+
+# with中不止可以open一个文件，open多个以实现复制相同内容至别的文件
+with open("D:\\github\\py_node\\test\\nailong.txt","r",encoding="utf-8") as f1,open("D:\\github\\py_node\\test\\nailong1hao.txt","w",encoding="utf-8") as f2:
+    f2.write(f1.read())
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
