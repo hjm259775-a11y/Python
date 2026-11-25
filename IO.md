@@ -322,6 +322,99 @@ with open("D:\\github\\py_node\\test\\nailong.txt","r",encoding="utf-8") as f1,o
 
 
 
+# 序列化
+
+为了永久保存python中的抽象对象
+
+-   **序列化：把 Python 对象转换成字节序列。**
+-   **反序列化：把字节序列重新转换成 Python 对象。**
+
+
+
+
+
+
+
+>   对象的序列化和反序列化会用到`pickle`模块
+
+## pickle
+
+
+
+### dump
+
+将对象序列化并保存在指定文件
+
+```py
+pickle.dump(lst,open("D:\\github\\py_node\\test\\nailong1hao.txt","wb+"))
+```
+
+这样可以直接写入
+
+
+
+
+
+### load
+
+将对象反序列化并读取
+
+```py
+res = pickle.load(open("D:\\github\\py_node\\test\\nailong1hao.txt","rb+"))
+print(res)
+```
+
+
+
+
+
+### dumps
+
+将对象序列化
+
+```py
+lst = [10,20,30,"liucheng"]
+import pickle
+
+res = pickle.dumps(lst) # 序列化了
+print(res) # b'\x80\x04\x95\x16\x00\x00\x00\x00\x00\x00\x00]\x94(K\nK\x14K\x1e\x8c\x08liucheng\x94e.'
+# 转成二进制了
+```
+
+
+
+
+
+### loads
+
+将对象反序列化
+
+```py
+lst = [10,20,30,"liucheng"]
+import pickle
+res = pickle.dumps(lst)
+print(res)
+
+print(pickle.loads(res)) # 反序列化了，[10, 20, 30, 'liucheng']
+```
+
+
+
+### 结合
+
+
+
+```py
+lst = [10,20,30,"liucheng"]
+import pickle
+
+with open("D:\\github\\py_node\\test\\nailong.txt","wb+") as f: # 二进制加写
+    f.write(pickle.dumps(lst)) # 把这个列表序列化为二进制之后写进去
+
+with open("D:\\github\\py_node\\test\\nailong.txt","rb+") as f: # 二进制加读
+    print(pickle.loads(f.read())) # 将读到的二进制进行反序列化后输出
+```
+
 
 
 
