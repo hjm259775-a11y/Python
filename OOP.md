@@ -108,8 +108,10 @@
 ==**对象：**==
 
 -   理解：类中的某一个具体个体。
+
 -   抽象 → 具体。
--   
+
+    
 
 ### 创建类
 
@@ -124,21 +126,18 @@ class 类名():
 class lei:
     name = 'zhangsan' # 属性
 
-    def kaimen(self): # 行为，这个self代表调用本类属性，不代表传参
+    def kaimen(self): # 行为
         print(f"{self.name}打开了门")
 ```
 
->   注意：
+>   注意：self 的本质
 >
->   `self`关键字，主要用于调用类内部的成员，在类内部的函数中出现的默认参数，本身不具备任何意义，不要给参数。
+>   -   `self` 不是 Python 的关键字，而是一种约定俗成的参数名称。
+>   -   `self` 代表调用当前类的属性。
+>   -   `self` 是实例方法的第一个形参。
+>   -   通过对象调用实例方法时，Python 会自动传入该对象，不需要手动传递。
 
 
-
-输出id(Person)和输出id(Person) 
-
--输出id(Person)：类定义时类本身地址
-
--输出id(Person)：创建对象后的对象地址
 
 
 
@@ -146,19 +145,34 @@ class lei:
 
 
 
+```py
+class lei:
+    name = 'zhangsan'
+
+    def kaimen(self):
+        print(f"{self.name}打开了门")
+
+
+shili = lei() # 将要操作的类用变量装起来，避免在堆中创建对象，默认值永远都是张三的问题（起个代号）
+shili.name = 'liucheng' # 将shili这个对象里的name改成liucheng
+shili.kaimen() # 会输出liucheng打开了门
+
+p1 = lei()
+p1.name = "huangyueying"
+p1.kaimen() # 输出huangyueying打开了门
 ```
-注意：
-
-`self`关键字，主要用于调用类内部的成员，在类内部的函数中出现的默认参数，本身不具备任何意义，不要给参数。
-```
 
 
 
 
 
+冷知识：输出id(Person)和输出id(Person()) 
 
+*   输出id(Person)：类定义时类本身的地址
 
+*   输出id(Person())：创建对象后的对象地址
 
+其实无关紧要，所以我没用特殊格式
 
 
 
