@@ -180,6 +180,73 @@ p1.kaimen() # 输出huangyueying打开了门
 
 
 
+## 构造函数
+
+**构造方法：**
+
+-   创建对象时，为其属性赋初值（初始化属性的意思）
+-   **创建对象时，执行其构造函数**
+-   **如果没有显式的写出构造方法，则系统会提供一个默认的无参构造方法**
+-   如果显式的写出了任何一个构造方法，则系统将不会提供默认的无参构造方法
+
+>    创建对象时执行的是类中的 `__init__` 函数
+
+
+
+
+
+**无参构造函数：**
+
+````py
+class lei:
+    username = None
+    password = None
+
+    def __init__(self): # 无参构造函数
+        print("构造函数")
+
+    def shuchu(self):
+        print(f"mingzi:{self.username},mima:{self.password}")
+
+duixiang = lei() # 输出“构造函数”
+duixiang.shuchu() # mingzi:None,mima:None
+````
+
+
+
+
+
+**有参构造函数：**
+
+```py
+class lei:
+    username = None
+    password = None
+
+    def __init__(self,username,password): # 有参构造函数
+        self.username = username # 加了self代表当前对象的变量，不加self的是参数
+        self.password = password
+        print("构造函数")
+
+    def shuchu(self):
+        print(f"mingzi:{self.username},mima:{self.password}")
+
+duixiang = lei("liucheng",123) # 输出“构造函数”
+duixiang.shuchu() # mingzi:liucheng,mima:123
+```
+
+>   **self关键字**
+>
+>   -   定义在类中的函数，必须增加参数self，参数self不需要传递参数。
+>   -   作用只在于在函数内部调用类中的成员变量。
+>   -   `self` 表示当前对象。其实就相当于`lei()`，这么想就行了，当然，要是越想越绕那还是不想了
+
+
+
+>   `__init__()` **就相当于给新创建的对象提供了一个自动初始化的机会。**
+
+
+
 
 
 
