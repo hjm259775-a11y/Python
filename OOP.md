@@ -245,7 +245,7 @@ duixiang.shuchu() # mingzi:liucheng,mima:123
 
 >   `__init__()` **就相当于给新创建的对象提供了一个自动初始化的机会。**
 
-
+。
 
 
 
